@@ -31,6 +31,8 @@
             </ul>
         </nav>
 
+        <div id="app"></div>
+
         <section class="notifications" style="display: none;">
             <p class="notification-message" id="errorBox">Message...</p>
         </section>
@@ -148,21 +150,16 @@
                 <input type="text" class="form-control" placeholder="Image Url" value="" name="imageUrl">
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
-        </form>
+        </form> -->
 
-        <form class="text-center border border-light p-5" action="" method="">
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="email" class="form-control" placeholder="Email" name="email" value="">
+        <footer class="page-footer font-small">
+            <div class="footer-copyright text-center py-3">© 2020
+                <a href="https://softuni.bg/trainings/2840/js-applications-june-2020/internal" class="text-dark">JS Applications</a>
             </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" class="form-control" placeholder="Password" name="password" value="">
-            </div>
+        </footer>
+    </div>
 
-            <button type="submit" class="btn btn-primary">Login</button>
-        </form>
-
+    <script type="text/x-handlebars-template" id="register-form-template">
         <form class="text-center border border-light p-5" action="#" method="post">
             <div class="form-group">
                 <label for="email">Email</label>
@@ -179,15 +176,23 @@
             </div>
 
             <button type="submit" class="btn btn-primary">Register</button>
-        </form> -->
+        </form>
+    </script>
 
-        <footer class="page-footer font-small">
-            <div class="footer-copyright text-center py-3">© 2020
-                <a href="https://softuni.bg/trainings/2840/js-applications-june-2020/internal" class="text-dark">JS Applications</a>
+    <script type="text/x-handlebars-template" id="login-form-template">
+        <form class="text-center border border-light p-5" action="" method="">
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" class="form-control" placeholder="Email" name="email" value="">
             </div>
-        </footer>
-    </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" class="form-control" placeholder="Password" name="password" value="">
+            </div>
 
+            <button type="submit" class="btn btn-primary">Login</button>
+        </form>
+    </script>
 </body>
 
 </html>

@@ -1,15 +1,32 @@
+const routes = {
+    'login': 'login-form-template',
+    'register': 'register-form-template'
+};
+
+const router = (path) => {
+    let app = document.getElementById('app');
+
+    let template = Handlebars.compile(document.getElementById(routes[path]).innerHTML);
+
+    app.innerHTML = template();
+};
+
 function addEventListeners() {
-    document.querySelector('.navigation').addEventListener('click', e => {
-        e.preventDefault();
+    document.querySelector('.navigation').addEventListener('click', navigateHandler);
+}
 
-        if (!e.target.classList.contains('nav-link')) {
-            return;
-        }
+function navigateHandler(e) {
+    e.preventDefault();
 
-        let url = new URL(e.target.href);
+    if (!e.target.classList.contains('nav-link')) {
+        return;
+    }
 
-        history.pushState({}, '', url.pathname);
-    });
+    let url = new URL(e.target.href);
+
+    history.pushState({}, '', url.pathname);
+
+    router(url.pathname.slice(1));
 }
 
 addEventListeners();
