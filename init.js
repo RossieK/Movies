@@ -48,4 +48,19 @@ function onRegisterSubmit(e) {
     }
 }
 
+function onAddMovieSubmit(e) {
+    e.preventDefault();
+
+    let formData = new FormData(document.forms['create-form']);
+
+    let title = formData.get('title');
+    let description = formData.get('description');
+    let imageUrl = formData.get('imageUrl');
+
+    movieService.add({ title, description, imageUrl })
+        .then(res => {
+            navigate('home');
+        });
+}
+
 addEventListeners();
