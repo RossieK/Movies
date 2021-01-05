@@ -18,5 +18,14 @@ const authService = {
         localStorage.setItem('auth', JSON.stringify(data));
 
         return data;
+    },
+
+    getData() {
+        let data = JSON.parse(localStorage.getItem('auth'));
+
+        return {
+            isAuthenticated: Boolean(data.idToken),
+            email: data.email || ""
+        };
     }
 };

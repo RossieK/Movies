@@ -1,5 +1,8 @@
 function addEventListeners() {
-    document.querySelector('.navigation').addEventListener('click', navigateHandler);
+    let navigationTemplate = Handlebars.compile(document.getElementById('navigation-template').innerHTML);
+    Handlebars.registerPartial('navigationPartial', navigationTemplate);
+
+    navigate('home');
 }
 
 function navigateHandler(e) {

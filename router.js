@@ -9,7 +9,9 @@ const router = (path) => {
 
     let template = Handlebars.compile(document.getElementById(routes[path]).innerHTML);
 
-    app.innerHTML = template();
+    let authData = authService.getData();
+
+    app.innerHTML = template(authData);
 };
 
 const navigate = (path) => {
