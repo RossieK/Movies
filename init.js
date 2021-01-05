@@ -16,4 +16,15 @@ function navigateHandler(e) {
     router(url.pathname.slice(1));
 }
 
+function onLoginSubmit(e) {
+    e.preventDefault();
+
+    let formData = new FormData(document.forms['login-form']);
+
+    let email = formData.get('email');
+    let password = formData.get('password');
+
+    authService.login(email, password);
+}
+
 addEventListeners();
