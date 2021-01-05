@@ -7,6 +7,13 @@ const routes = {
 const router = (path) => {
     let app = document.getElementById('app');
 
+    switch (path) {
+        case 'logout':
+            authService.logout();
+            navigate('home');
+            return;
+    }
+
     let template = Handlebars.compile(document.getElementById(routes[path]).innerHTML);
 
     let authData = authService.getData();
