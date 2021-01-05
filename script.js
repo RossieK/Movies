@@ -1,5 +1,5 @@
 const routes = {
-    '/': 'home-template',
+    'home': 'home-template',
     'login': 'login-form-template',
     'register': 'register-form-template'
 };
