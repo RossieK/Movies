@@ -8,7 +8,7 @@ function addEventListeners() {
 function navigateHandler(e) {
     e.preventDefault();
 
-    if (!e.target.classList.contains('nav-link')) {
+    if (e.target.tagName != "A") {
         return;
     }
 

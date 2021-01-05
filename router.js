@@ -1,7 +1,8 @@
 const routes = {
     'home': 'home-template',
     'login': 'login-form-template',
-    'register': 'register-form-template'
+    'register': 'register-form-template',
+    'create': 'add-movie-template'
 };
 
 const router = (path) => {
