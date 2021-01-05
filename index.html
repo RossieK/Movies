@@ -113,7 +113,7 @@
 
     <script type="text/x-handlebars-template" id="register-form-template">
         {{>navigationPartial}}
-        <form class="text-center border border-light p-5" action="#" method="post">
+        <form id="register-form" class="text-center border border-light p-5" onsubmit="onRegisterSubmit(event)">
             <div class="form-group">
                 <label for="email">Email</label>
                 <input type="email" class="form-control" placeholder="Email" name="email" value="">
@@ -125,7 +125,7 @@
 
             <div class="form-group">
                 <label for="repeatPassword">Repeat Password</label>
-                <input type="password" class="form-control" placeholder="Repeat-Password" name="repeatPassword" value="">
+                <input type="password" class="form-control" placeholder="repeatPassword" name="repeatPassword" value="">
             </div>
 
             <button type="submit" class="btn btn-primary">Register</button>
@@ -156,6 +156,7 @@
             <p class="lead">Unlimited movies, TV shows, and more. Watch anywhere. Cancel anytime.</p>
         </div>
 
+        {{#if isAuthenticated}}
         <h1 class="text-center">Movies</h1>
         <section>
             <a href="#" class="btn btn-warning ">Add Movie</a>
@@ -207,6 +208,7 @@
                 </div>
             </div>
         </div>
+        {{/if}}
     </script>
 </body>
 

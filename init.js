@@ -31,4 +31,21 @@ function onLoginSubmit(e) {
         });
 }
 
+function onRegisterSubmit(e) {
+    e.preventDefault();
+
+    let formData = new FormData(document.forms['register-form']);
+
+    let email = formData.get('email');
+    let password = formData.get('password');
+    let rePassword = formData.get('repeatPassword');
+
+    if (password === rePassword) {
+        authService.register(email, password)
+            .then(data => {
+                navigate('home');
+            });
+    }
+}
+
 addEventListeners();
