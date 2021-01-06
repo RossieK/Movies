@@ -7,9 +7,11 @@ const routes = {
 };
 
 const router = async(fullPath) => {
-    let [path, id] = fullPath.split('/');
+    let [path, id, param] = fullPath.split('/');
     let app = document.getElementById('app');
     let templateData = authService.getData();
+
+    let templateId = routes[path];
 
     switch (path) {
         case 'home':
@@ -18,14 +20,18 @@ const router = async(fullPath) => {
         case 'details':
             let movieDetails = await movieService.getOne(id);
             Object.assign(templateData, movieDetails, { id });
+
+            if (param == 'edit') {
+                templateId = 'edit-movie-template';
+            }
             break;
         case 'logout':
             authService.logout();
-            navigate('/home');
+            navigate('home');
             return;
     }
 
-    let template = Handlebars.compile(document.getElementById(routes[path]).innerHTML);
+    let template = Handlebars.compile(document.getElementById(templateId).innerHTML);
 
     app.innerHTML = template(templateData);
 };

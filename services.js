@@ -102,5 +102,10 @@ const movieService = {
     async deleteMovie(id) {
         let res = await request(`${databaseUrl}/movies/${id}.json`, 'DELETE');
         return res;
+    },
+
+    async editMovie(id, movie) {
+        let res = await request(`${databaseUrl}/movies/${id}.json`, 'PUT', movie);
+        return res;
     }
 }
