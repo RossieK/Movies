@@ -97,5 +97,10 @@ const movieService = {
     async getOne(id) {
         let res = await request(`${databaseUrl}/movies/${id}.json`, 'GET');
         return res;
+    },
+
+    async deleteMovie(id) {
+        let res = await request(`${databaseUrl}/movies/${id}.json`, 'DELETE');
+        return res;
     }
 }

@@ -66,4 +66,15 @@ function onAddMovieSubmit(e) {
         });
 }
 
+function deleteMovie(e) {
+    e.preventDefault();
+
+    let id = e.target.dataset.id;
+
+    movieService.deleteMovie(id)
+        .then(res => {
+            navigate('home');
+        });
+}
+
 addEventListeners();

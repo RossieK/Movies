@@ -17,11 +17,11 @@ const router = async(fullPath) => {
             break;
         case 'details':
             let movieDetails = await movieService.getOne(id);
-            Object.assign(templateData, movieDetails);
+            Object.assign(templateData, movieDetails, { id });
             break;
         case 'logout':
             authService.logout();
-            navigate('home');
+            navigate('/home');
             return;
     }
 
@@ -31,7 +31,7 @@ const router = async(fullPath) => {
 };
 
 const navigate = (path) => {
-    history.pushState({}, '', path);
+    history.pushState({}, '', '/' + path);
 
     router(path);
 }
