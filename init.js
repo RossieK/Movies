@@ -2,6 +2,9 @@ function addEventListeners() {
     let navigationTemplate = Handlebars.compile(document.getElementById('navigation-template').innerHTML);
     Handlebars.registerPartial('navigationPartial', navigationTemplate);
 
+    let movieCardTemplate = Handlebars.compile(document.getElementById('movie-card-template').innerHTML);
+    Handlebars.registerPartial('moviePartial', movieCardTemplate);
+
     navigate('home');
 }
 

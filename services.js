@@ -2,13 +2,20 @@ const apiKey = "AIzaSyBj-frJh6hhHh4s7yVBR6QvewPBSZ5e8OM";
 const databaseUrl = "https://movies-83512-default-rtdb.firebaseio.com";
 
 const request = async(url, method, info) => {
-    let response = await fetch(url, {
-        method,
-        headers: {
-            'content-type': 'application/json'
-        },
-        body: JSON.stringify(info)
-    });
+    let options = {
+        method
+    };
+
+    if (info) {
+        Object.assign(options, {
+            headers: {
+                'content-type': 'application/json'
+            },
+            body: JSON.stringify(info)
+        });
+    }
+
+    let response = await fetch(url, options);
 
     let data = await response.json();
 
@@ -79,6 +86,11 @@ const authService = {
 const movieService = {
     async add(movieData) {
         let res = await request(`${databaseUrl}/movies.json`, 'POST', movieData);
+        return res;
+    },
+
+    async getAll() {
+        let res = await request(`${databaseUrl}/movies.json`, 'GET');
         return res;
     }
 }
