@@ -91,6 +91,11 @@ const movieService = {
 
     async getAll() {
         let res = await request(`${databaseUrl}/movies.json`, 'GET');
+        return Object.keys(res).map(key => Object.assign(res[key], { key }));
+    },
+
+    async getOne(id) {
+        let res = await request(`${databaseUrl}/movies/${id}.json`, 'GET');
         return res;
     }
 }

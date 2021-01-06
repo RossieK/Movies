@@ -2,16 +2,22 @@ const routes = {
     'home': 'home-template',
     'login': 'login-form-template',
     'register': 'register-form-template',
-    'create': 'add-movie-template'
+    'create': 'add-movie-template',
+    'details': 'movie-details-template'
 };
 
-const router = async(path) => {
+const router = async(fullPath) => {
+    let [path, id] = fullPath.split('/');
     let app = document.getElementById('app');
     let templateData = authService.getData();
 
     switch (path) {
         case 'home':
             templateData.movies = await movieService.getAll();
+            break;
+        case 'details':
+            let movieDetails = await movieService.getOne(id);
+            Object.assign(templateData, movieDetails);
             break;
         case 'logout':
             authService.logout();
