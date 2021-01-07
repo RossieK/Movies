@@ -8,6 +8,26 @@ function addEventListeners() {
     navigate('home');
 }
 
+function showNotification(message, type) {
+    let sectionElement;
+
+    switch (type) {
+        case 'error':
+            sectionElement = document.getElementById('errorBoxSection');
+            break;
+        default:
+            sectionElement = document.getElementById('successBoxSection');;
+            break;
+    }
+
+    sectionElement.firstElementChild.innerText = message;
+    sectionElement.style.display = 'block';
+
+    setTimeout(() => {
+        sectionElement.style.display = 'none';
+    }, 3000);
+}
+
 function navigateHandler(e) {
     e.preventDefault();
 
@@ -106,6 +126,7 @@ function onMovieLike(e, id) {
     movieService.likeMovie(id, email)
         .then(res => {
             navigate(`details/${id}`);
+            showNotification('Movie successfully liked.');
         })
 }
 
