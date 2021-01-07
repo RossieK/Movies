@@ -109,4 +109,14 @@ function onMovieLike(e, id) {
         })
 }
 
+function onMovieSearchSubmit(e) {
+    e.preventDefault();
+
+    let formData = new FormData(document.forms['search-movie-form']);
+
+    let searchText = formData.get('search-text');
+
+    navigate(`home?search=${searchText}`);
+}
+
 addEventListeners();

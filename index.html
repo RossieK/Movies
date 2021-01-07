@@ -104,9 +104,9 @@
         <h1 class="text-center">Movies</h1>
         <section>
             <a href="/create" class="btn btn-warning" onclick="navigateHandler(event)">Add Movie</a>
-            <form class="search float-right">
+            <form class="search float-right" id="search-movie-form" onsubmit="onMovieSearchSubmit(event)">
                 <label>Search: </label>
-                <input type="text">
+                <input type="text" name="search-text">
                 <input type="submit" class="btn btn-info" value="Search">
             </form>
         </section>

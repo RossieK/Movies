@@ -6,7 +6,8 @@ const routes = {
     'details': 'movie-details-template'
 };
 
-const router = async(fullPath) => {
+const router = async(url) => {
+    let [fullPath, queryString] = url.split('?');
     let [path, id, param] = fullPath.split('/');
     let app = document.getElementById('app');
     let templateData = authService.getData();
@@ -15,7 +16,8 @@ const router = async(fullPath) => {
 
     switch (path) {
         case 'home':
-            templateData.movies = await movieService.getAll();
+            let searchText = queryString ? queryString.split('=')[1] : "";
+            templateData.movies = await movieService.getAll(searchText);
             break;
         case 'details':
             let movieDetails = await movieService.getOne(id);

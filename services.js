@@ -89,9 +89,9 @@ const movieService = {
         return res;
     },
 
-    async getAll() {
+    async getAll(searchText) {
         let res = await request(`${databaseUrl}/movies.json`, 'GET');
-        return Object.keys(res).map(key => Object.assign(res[key], { key }));
+        return Object.keys(res).map(key => ({ key, ...res[key] })).filter(x => !searchText || searchText == x.title);
     },
 
     async getOne(id) {
