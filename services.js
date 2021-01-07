@@ -96,7 +96,8 @@ const movieService = {
 
     async getOne(id) {
         let res = await request(`${databaseUrl}/movies/${id}.json`, 'GET');
-        return res;
+        let { email } = authService.getData();
+        return Object.assign(res, { isOwn: res.creator == email });
     },
 
     async deleteMovie(id) {
@@ -105,7 +106,7 @@ const movieService = {
     },
 
     async editMovie(id, movie) {
-        let res = await request(`${databaseUrl}/movies/${id}.json`, 'PUT', movie);
+        let res = await request(`${databaseUrl}/movies/${id}.json`, 'PATCH', movie);
         return res;
     }
 }

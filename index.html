@@ -169,9 +169,10 @@
                 <div class="col-md-4 text-center">
                     <h3 class="my-3 ">Movie Description</h3>
                     <p>{{description}}</p>
+                    {{#if isOwn}}
                     <a class="btn btn-danger" href="#" data-id="{{id}}" onclick="deleteMovie(event)">Delete</a>
-                    <a class="btn btn-warning" href="/details/{{id}}/edit" onclick="navigateHandler(event)">Edit</a>
-                    <a class="btn btn-primary" href="#">Like</a>
+                    <a class="btn btn-warning" href="/details/{{id}}/edit" onclick="navigateHandler(event)">Edit</a> {{else}}
+                    <a class="btn btn-primary" href="#">Like</a> {{/if}}
                     <span class="enrolled-span">Liked 1</span>
                 </div>
             </div>
