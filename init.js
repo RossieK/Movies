@@ -98,4 +98,15 @@ function onEditMovieSubmit(e, id) {
         });
 }
 
+function onMovieLike(e, id) {
+    e.preventDefault();
+
+    let { email } = authService.getData();
+
+    movieService.likeMovie(id, email)
+        .then(res => {
+            navigate(`details/${id}`);
+        })
+}
+
 addEventListeners();

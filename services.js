@@ -97,7 +97,9 @@ const movieService = {
     async getOne(id) {
         let res = await request(`${databaseUrl}/movies/${id}.json`, 'GET');
         let { email } = authService.getData();
-        return Object.assign(res, { isOwn: res.creator == email });
+        let likes = res.likes ? Object.values(res.likes) : [];
+        let alreadyLiked = res.likes ? Object.values(res.likes).some(x => x.creator == email) : false;
+        return Object.assign(res, { isOwn: res.creator == email, alreadyLiked, likes: likes.length });
     },
 
     async deleteMovie(id) {
@@ -107,6 +109,11 @@ const movieService = {
 
     async editMovie(id, movie) {
         let res = await request(`${databaseUrl}/movies/${id}.json`, 'PATCH', movie);
+        return res;
+    },
+
+    async likeMovie(id, creator) {
+        let res = await request(`${databaseUrl}/movies/${id}/likes.json`, 'POST', { creator });
         return res;
     }
 }
