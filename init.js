@@ -48,10 +48,21 @@ function onLoginSubmit(e) {
     let email = formData.get('email');
     let password = formData.get('password');
 
-    authService.login(email, password)
-        .then(data => {
-            navigate('home');
-        });
+    if (email == "" || password == "") {
+        showNotification('There should be no empty field', 'error');
+    } else {
+        authService.login(email, password)
+            .then(data => {
+                if (data.error) {
+                    showNotification(data.error.message, 'error');
+                    return;
+                } else {
+                    showNotification('Succesfully logged in.')
+                    navigate('home');
+                }
+            })
+            .catch(err => console.error(err));
+    }
 }
 
 function onRegisterSubmit(e) {
