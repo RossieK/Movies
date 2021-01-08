@@ -172,7 +172,7 @@
                     {{#if isOwn}}
                     <a class="btn btn-danger" href="#" data-id="{{id}}" onclick="deleteMovie(event)">Delete</a>
                     <a class="btn btn-warning" href="/details/{{id}}/edit" onclick="navigateHandler(event)">Edit</a> {{else}} {{#if alreadyLiked}}
-                    <span class="enrolled-span">Liked 1</span> {{else}}
+                    <span class="enrolled-span">Liked {{likes}}</span> {{else}}
                     <a class="btn btn-primary" href="#" onclick="onMovieLike(event, '{{id}}')">Like</a> {{/if}} {{/if}}
                 </div>
             </div>
