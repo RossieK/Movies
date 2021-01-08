@@ -16,7 +16,7 @@ function showNotification(message, type) {
             sectionElement = document.getElementById('errorBoxSection');
             break;
         default:
-            sectionElement = document.getElementById('successBoxSection');;
+            sectionElement = document.getElementById('successBoxSection');
             break;
     }
 
@@ -57,7 +57,7 @@ function onLoginSubmit(e) {
                     showNotification(data.error.message, 'error');
                     return;
                 } else {
-                    showNotification('Succesfully logged in.')
+                    showNotification('Succesfully logged in.');
                     navigate('home');
                 }
             })
@@ -87,7 +87,7 @@ function onRegisterSubmit(e) {
                     showNotification(data.error.message, 'error');
                     return;
                 } else {
-                    showNotification('Registration successful.')
+                    showNotification('Registration successful.');
                     navigate('home');
                 }
             });
@@ -105,10 +105,15 @@ function onAddMovieSubmit(e) {
 
     let { email } = authService.getData();
 
-    movieService.add({ creator: email, title, description, imageUrl })
-        .then(res => {
-            navigate('home');
-        });
+    if (title == "" || description == "" || imageUrl == "") {
+        showNotification('There should be no empty field', 'error');
+    } else {
+        movieService.add({ creator: email, title, description, imageUrl })
+            .then(res => {
+                showNotification('Movie successfully created.');
+                navigate('home');
+            });
+    }
 }
 
 function deleteMovie(e) {
@@ -148,8 +153,8 @@ function onMovieLike(e, id) {
 
     movieService.likeMovie(id, email)
         .then(res => {
-            navigate(`details/${id}`);
             showNotification('Movie successfully liked.');
+            navigate(`details/${id}`);
         })
 }
 
