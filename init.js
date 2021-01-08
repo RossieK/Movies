@@ -123,6 +123,7 @@ function deleteMovie(e) {
 
     movieService.deleteMovie(id)
         .then(res => {
+            showNotification('Movie successfully deleted.');
             navigate('home');
         });
 }
@@ -136,14 +137,19 @@ function onEditMovieSubmit(e, id) {
     let description = formData.get('description');
     let imageUrl = formData.get('imageUrl');
 
-    movieService.editMovie(id, {
-            title,
-            description,
-            imageUrl
-        })
-        .then(res => {
-            navigate(`details/${id}`);
-        });
+    if (title == "" || description == "" || imageUrl == "") {
+        showNotification('There should be no empty field', 'error');
+    } else {
+        movieService.editMovie(id, {
+                title,
+                description,
+                imageUrl
+            })
+            .then(res => {
+                showNotification('Movie successfully edited.');
+                navigate(`details/${id}`);
+            });
+    }
 }
 
 function onMovieLike(e, id) {
