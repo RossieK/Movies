@@ -74,10 +74,22 @@ function onRegisterSubmit(e) {
     let password = formData.get('password');
     let rePassword = formData.get('repeatPassword');
 
-    if (password === rePassword) {
+    if (email == "" || password == "" || rePassword == "") {
+        showNotification('There should be no empty field', 'error');
+    } else if (password.length < 6) {
+        showNotification('The password should be at least 6 characters long.', 'error');
+    } else if (password !== rePassword) {
+        showNotification('The passwords should match.', 'error');
+    } else {
         authService.register(email, password)
             .then(data => {
-                navigate('home');
+                if (data.error) {
+                    showNotification(data.error.message, 'error');
+                    return;
+                } else {
+                    showNotification('Registration successful.')
+                    navigate('home');
+                }
             });
     }
 }
